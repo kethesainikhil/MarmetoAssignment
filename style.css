@@ -123,6 +123,14 @@ justify-content: space-around;
 }
 
 @media screen and (max-width: 1000px)  {
+  .tabs{
+    max-width: max-content;
+    display: flex;
+    list-style: none;
+    justify-content: flex-start;
+    padding: 0px 0;
+    max-height: max-content;
+  }
   .card{
     margin-bottom: 10px;
   }
@@ -135,10 +143,9 @@ justify-content: space-around;
   .title{
     font-size: 20px;
   }
-  .tab{
-    font-size: 20px;
-  }
+
   .card{
+    margin-left: 30px;
     width: 80%;
   }
   .card img {
@@ -147,7 +154,8 @@ justify-content: space-around;
     margin-bottom: 0px;
   }
   .tabs{
-    width: 100%;
+    width: 390px;
+    margin-right: 0px;
   }
   .badge {
     display: none;
