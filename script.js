@@ -22,34 +22,30 @@ const fetchAndDisplayProducts = async (category) => {
 const createProductCard = (product) => {
     const container = document.querySelector('.product-container');
 
-    // Create card element
     const card = document.createElement('div');
     card.classList.add('card');
+    const badgeText = document.createElement('div');
+    badgeText.classList.add('badge');
+    badgeText.textContent = product.badge_text || null;
 
-    // Add product image
+    if (product.badge_text == null) {
+        badgeText.style.padding = '5px 2px';
+        badgeText.style.opacity = '0';
+    } else {
+        badgeText.style.padding = '5px 2px';
+    }
+    card.appendChild(badgeText)
     const img = document.createElement('img');
     img.src = product.image;
     img.style.height = '267px';
     img.style.borderRadius = '5px';
     card.appendChild(img);
 
-    // Add badge text
-    const badgeText = document.createElement('div');
-    badgeText.classList.add('badge');
-    badgeText.textContent = product.badge_text || null;
-    card.appendChild(badgeText);
+   
 
-    if (product.badge_text == null) {
-        badgeText.style.display = 'none';
-    } else {
-        badgeText.style.padding = '5px 2px';
-    }
-
-    // Add product details
     const details = document.createElement('div');
     details.classList.add('details');
 
-    // Add product title and vendor
     const titleVendor = document.createElement('div');
     titleVendor.classList.add('title-vendor');
     const productTitle = document.createElement('h3');
@@ -69,7 +65,6 @@ const createProductCard = (product) => {
 
     details.appendChild(titleVendor);
 
-    // Add product price and compare at price
     const price = document.createElement('div');
     price.classList.add('price');
     price.textContent = `Price: ₹${product.price}`;
@@ -80,7 +75,6 @@ const createProductCard = (product) => {
         compareAtPrice.id = 'compare-at-price';
         compareAtPrice.textContent = `₹${product.compare_at_price}`;
 
-        // Calculate discount percentage
         const discount = Math.round(((product.compare_at_price - product.price) / product.compare_at_price) * 100);
         const discountText = document.createElement('span');
         discountText.classList.add('discount');
@@ -105,7 +99,6 @@ const createProductCard = (product) => {
 
     card.appendChild(details);
     
-    // Append details to card
     const button = document.createElement('button');
     button.classList.add('button1');
     button.textContent = 'Add to cart';
@@ -116,23 +109,19 @@ const createProductCard = (product) => {
 
 const tabs = document.querySelectorAll('.tab');
 
-// Iterate over each tab and add a click event listener
 tabs.forEach(tab => {
     tab.addEventListener('click', (e) => {
         const category = tab.innerText.trim(); 
         fetchAndDisplayProducts(category);
         
-        // Remove black background and reset opacity for all tabs
         tabs.forEach(otherTab => {
             otherTab.style.backgroundColor = '';
             const otherImg = otherTab.querySelector('.icon');
             otherImg.style.opacity = '';
         });
         
-        // Set the background color of the clicked tab to black
         tab.style.backgroundColor = 'black';
         
-        // Get the image element inside the clicked tab
         const img = tab.querySelector('.icon');
         img.style.opacity = '1';
     });
