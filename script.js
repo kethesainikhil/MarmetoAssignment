@@ -29,10 +29,10 @@ const createProductCard = (product) => {
     badgeText.textContent = product.badge_text || null;
 
     if (product.badge_text == null) {
-        badgeText.style.padding = '5px 2px';
+        badgeText.style.padding = '8px 2px';
         badgeText.style.opacity = '0';
     } else {
-        badgeText.style.padding = '5px 2px';
+        badgeText.style.padding = '8px 2px';
     }
     card.appendChild(badgeText)
     const img = document.createElement('img');
